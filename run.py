@@ -11,12 +11,14 @@ class Carrace():
         self.angle = 360
         self.run()
 
+# 背景初始化
     def bginit(self):
         bgsize = width, height = 600, 400
         bgcolor = self.black
         self.screen = pygame.display.set_mode(bgsize)
         pygame.display.set_caption('wild race')
 
+# 跑道初始化
     def roadinit(self):
 
         rlist = [(100, 100), (500, 100), (500, 300), (100, 300)]
@@ -26,7 +28,7 @@ class Carrace():
         corner3 = pygame.draw.circle(self.screen, self.gold, (500, 300), 25)
         corner4 = pygame.draw.circle(self.screen, self.gold, (100, 300), 25)
 
-
+# 赛车初始化
     def initcar(self):
         self.car = pygame.image.load('./car.png')
         carrect = self.car.get_rect()
@@ -38,6 +40,7 @@ class Carrace():
 
         self.screen.blit(self.car, carrect)
 
+# 更新赛车位置
     def updatecar(self):
         self.spd = self.carmove(self.speed, self.angle)
         self.newcar = pygame.transform.rotate(self.car, self.angle)
@@ -46,6 +49,7 @@ class Carrace():
         self.pos[0] += self.spd[0]
         self.pos[1] += self.spd[1]
 
+# 赛车移动控制（偷懒版）
     def carmove(self, a, b):
         b0, b1 =0, 0
         while b < 0:
@@ -69,7 +73,7 @@ class Carrace():
 
         return [a*b0, a*b1]
 
-
+# 运行
     def run(self):
         self.bginit()
 
